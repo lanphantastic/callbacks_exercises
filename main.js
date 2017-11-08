@@ -129,7 +129,25 @@ console.log( 'The total number of transactions is:', totalTransactions );
   HINT(S):
   - Not all transactions are 'sales'.
 */
-var numSales;
+
+// code to find num of sales without function and filter
+// countSale = 0;
+//
+// for (var i = 0; i < transactions.length; i++) {
+//   if (transactions[i]["type"] === "sale") {
+//     countSale += 1;
+//   }
+// }
+// console.log(countSale);
+
+
+
+var findTypeSale = transactions.filter(function(sale){
+    return sale["type"] === "sale";
+  }
+);
+
+var numSales = findTypeSale.length;
 
 /*
   Hey, welcome to the first question!
