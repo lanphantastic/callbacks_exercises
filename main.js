@@ -333,9 +333,26 @@ console.log( '\nQ8: The "big spenders" are:', bigSpenders );
   HINT(S):
   - Transactions don't have 'prices', but their 'items' do!
 */
-var sumSales;
 
-console.log( 'The sum of all sales is:', sumSales );
+var firstSale = function(transaction){
+  return transaction["type"] === 'sale';
+};
+
+var findSaleOnly = transactions.filter(firstSale)[0];
+
+// console.log(findSaleOnly);
+
+var prices = findSaleOnly["items"].map(function(item) {
+  return item["price"];
+});
+
+// console.log(prices);
+
+var sumSales = prices.reduce(function(total, price){
+  return total + price;
+});
+
+console.log( '\nQ9: The sum of all sales is: $',sumSales );
 
 
 // --------------------------------------------------
