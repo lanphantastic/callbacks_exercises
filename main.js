@@ -366,6 +366,15 @@ console.log( '\nQ9: The sum of all sales is: $',sumSales );
   - Make sure to include 'price' information from *all* purchases.
 */
 
+var transactionOnly = function(transaction){
+  return transaction["type"] === 'purchase';
+};
+
+var findTransaction = transactions.filter(transactionOnly);
+
+console.log(findTransaction);
+
+
 var sumPurchases;
 
 console.log( 'The sum of all purhcases is:', sumPurchases );
