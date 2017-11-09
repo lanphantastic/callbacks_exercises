@@ -117,7 +117,7 @@ var transactions = [
 */
 var totalTransactions = transactions.length;
 
-console.log( 'The total number of transactions is:', totalTransactions );
+console.log( 'Q1: The total number of transactions is:', totalTransactions );
 
 
 // --------------------------------------------------
@@ -168,7 +168,7 @@ var numSales = findTypeSale.length;
   The breakdown above takes up a lot of space, feel free to move it to the top or bottom of the file!
 */
 
-console.log( 'The total number of sales is:', numSales );
+console.log( '\nQ2: The total number of sales is:', numSales );
 
 
 // --------------------------------------------------
@@ -185,7 +185,7 @@ var findTypePurchase = transactions.filter(function(purchase){
 
 var numPurchases = findTypePurchase.length;
 
-console.log( 'The total number of purchases is:', numPurchases );
+console.log( '\nQ3: The total number of purchases is:', numPurchases );
 
 
 // --------------------------------------------------
@@ -208,7 +208,7 @@ var findCash = findSale.filter(function(transaction){
 
 var numCashSales = findCash.length;
 
-console.log( 'The total number of cash sales is:', numCashSales );
+console.log( '\nQ4: The total number of cash sales is:', numCashSales );
 
 // --------------------------------------------------
 // QUESTION 04
@@ -231,7 +231,7 @@ var findPurchase = findCredit.filter(function(transaction){
 
 var numCreditPurchases = findPurchase.length;
 
-console.log( 'The total number of credit purchases is:', numCreditPurchases );
+console.log( '\nQ5: The total number of credit purchases is:', numCreditPurchases );
 
 
 
@@ -256,7 +256,7 @@ var uniqueVendors = checkForVendor.map(function(vendor) {
   return vendor["vendor"];
 });
 
-console.log( 'The unique vendors are:', uniqueVendors );
+console.log( '\nQ6: The unique vendors are:', uniqueVendors );
 
 
 // --------------------------------------------------
@@ -289,7 +289,7 @@ var RemoveDuplicates = customerNameOnly.filter(function(customer,index,arr){
 
 var uniqueCustomers = RemoveDuplicates;
 
-console.log( 'The unique customers are:', uniqueCustomers );
+console.log( '\nQ7: The unique customers are:', uniqueCustomers );
 
 
 // --------------------------------------------------
@@ -305,9 +305,23 @@ console.log( 'The unique customers are:', uniqueCustomers );
   - There may be more than 1 'sale' that includes 5 or more items.
   - Individual transactions do not have either `name` or `numItems` properties, we'll have to add them to the output.
 */
-var bigSpenders;
+var fiveItems = transactions.map(function(transaction){
+    if (transaction["items"].length > 4) {
+      var numItems = transaction["items"].length;
+      var name = transaction["customer"];
+      var hash = {}
+      if (name === undefined) {
+        name = "N/A";
+      }
+      return {"name": name, "numItems": numItems};
+    }
+});
 
-console.log( 'The "big spenders" are:', bigSpenders );
+var bigSpenders = fiveItems.filter(function (element) {
+  return element !== undefined;
+}
+);
+console.log( '\nQ8: The "big spenders" are:', bigSpenders );
 
 
 // --------------------------------------------------
