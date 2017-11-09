@@ -177,7 +177,13 @@ console.log( 'The total number of sales is:', numSales );
 /*
   Calculate the total number of 'purchases'.
 */
-var numPurchases;
+
+var findTypePurchase = transactions.filter(function(purchase){
+    return purchase["type"] === "purchase";
+  }
+);
+
+var numPurchases = findTypePurchase.length;
 
 console.log( 'The total number of purchases is:', numPurchases );
 
@@ -191,10 +197,18 @@ console.log( 'The total number of purchases is:', numPurchases );
   HINT(S):
   - Don't forget that 'purchases' can also be made in 'cash'!
 */
-var numCashSales;
+
+var findSale = transactions.filter(function(transaction) {
+  return transaction["type"] === "sale";
+});
+
+var findCash = findSale.filter(function(transaction){
+  return transaction["paymentMethod"] === "cash";
+});
+
+var numCashSales = findCash.length;
 
 console.log( 'The total number of cash sales is:', numCashSales );
-
 
 // --------------------------------------------------
 // QUESTION 04
@@ -205,9 +219,20 @@ console.log( 'The total number of cash sales is:', numCashSales );
   HINT(S):
   - Make sure to exclude any 'sales' made by 'credit'!
 */
-var numCreditPurchases;
+
+
+var findCredit = transactions.filter(function(transaction) {
+  return transaction["type"] === "purchase";
+});
+
+var findPurchase = findCredit.filter(function(transaction){
+  return transaction["paymentMethod"] === "credit";
+});
+
+var numCreditPurchases = findPurchase.length;
 
 console.log( 'The total number of credit purchases is:', numCreditPurchases );
+
 
 
 // --------------------------------------------------
