@@ -403,9 +403,27 @@ console.log( 'The sum of all purchases is: $', sumPurchases );
   HINT(S):
   - Unlike 'QUESTION 08' and 'QUESTION 09', here we're interested in both 'sale' and 'purchase' transactions.
 */
-var netProfit;
 
-console.log( 'The net profit is:', netProfit );
+var findSaleOnly = transactions.filter(function(transaction){
+  return transaction["type"]=== 'sale';
+});
+
+var itemPrice = findSaleOnly.map(function (item) {
+  return item["items"].map(function (item) {
+    return item["price"];
+  });
+});
+
+var merged = [].concat.apply([], itemPrice);
+
+var sumSales = merged.reduce(function (total, item) {
+  return (total + item);
+}).toFixed(2);
+
+
+var netProfit = (parseInt(sumSales) + parseInt(sumPurchases));
+
+console.log( 'The net profit is: $', netProfit );
 
 
 // --------------------------------------------------
