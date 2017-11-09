@@ -366,18 +366,28 @@ console.log( '\nQ9: The sum of all sales is: $',sumSales );
   - Make sure to include 'price' information from *all* purchases.
 */
 
-var transactionOnly = function(transaction){
+var checkForPurchase = transactions.filter(function(transaction){
   return transaction["type"] === 'purchase';
-};
+});
 
-var findTransaction = transactions.filter(transactionOnly);
+console.log(checkForPurchase);
+console.log('\n');
 
-console.log(findTransaction);
+var itemWithTheirPrices = checkForPurchase.map(function(itemPrice) {
+  return itemPrice["items"].map(function(item){
+    return item["price"];
+  });
+});
 
+console.log(itemWithTheirPrices);
 
-var sumPurchases;
+var merged = [].concat.apply([], itemWithTheirPrices);
 
-console.log( 'The sum of all purhcases is:', sumPurchases );
+var sumPurchases = merged.reduce(function (total, item) {
+  return (total + item);
+}).toFixed(2);
+
+console.log( 'The sum of all purchases is: $', sumPurchases );
 
 
 // --------------------------------------------------
