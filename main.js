@@ -271,7 +271,23 @@ console.log( 'The unique vendors are:', uniqueVendors );
   - The assembled array should be made up of strings, not full `transaction` objects.
   - Make sure that the resulting array *does not* include any duplicates.
 */
-var uniqueCustomers;
+
+var checkForCustomers = transactions.filter(function(transaction){
+  return transaction["customer"];
+});
+
+var customerNameOnly = checkForCustomers.map(function(customer) {
+  return customer["customer"];
+});
+
+var RemoveDuplicates = customerNameOnly.filter(function(customer,index,arr){
+  if (arr.indexOf(customer) === index){
+    return customer;
+  };
+  }
+);
+
+var uniqueCustomers = RemoveDuplicates;
 
 console.log( 'The unique customers are:', uniqueCustomers );
 
